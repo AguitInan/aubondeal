@@ -1,8 +1,8 @@
 -- Table des utilisateurs (users)
 CREATE TABLE IF NOT EXISTS users (
      user_UUID SERIAL PRIMARY KEY NOT NULL,
-     user_pseudo VARCHAR(100) UNIQUE,
-     username VARCHAR(100),
+     user_pseudo VARCHAR(100),
+     username VARCHAR(100) UNIQUE,
      user_password VARCHAR(255),
      created_at DATE NOT NULL
 );
