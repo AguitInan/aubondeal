@@ -1,10 +1,10 @@
 -- Table des utilisateurs (users)
 CREATE TABLE IF NOT EXISTS users (
      user_UUID SERIAL PRIMARY KEY NOT NULL,
-     user_pseudo VARCHAR(100),
+     user_pseudo VARCHAR(100) UNIQUE,
      username VARCHAR(100),
      user_password VARCHAR(255),
-     created_at DATE
+     created_at DATE NOT NULL
 );
 
 -- Table des produits (products)
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS products (
      product_description TEXT,
      product_price DECIMAL(10, 2) CHECK (product_price >= 0),
      product_quantity INT CHECK (product_quantity >= 0),
-     created_at DATE,
+     created_at DATE NOT NULL,
      updated_at DATE,
      CONSTRAINT chk_dates CHECK (created_at < updated_at)
 );
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS orders (
      order_number SERIAL PRIMARY KEY NOT NULL,
      order_total_cost_ht DECIMAL(10, 2) CHECK (order_total_cost_ht >= 0),
      order_total_quantity_ht INT CHECK (order_total_quantity_ht >= 0),
-     created_at DATE,
+     created_at DATE NOT NULL,
      deliver_at DATE,
      CONSTRAINT chk_dates CHECK (created_at < deliver_at),
      user_uuid INT REFERENCES users(user_uuid)
